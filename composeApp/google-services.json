@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "62871456607",
+    "project_id": "cmp-kmp-login",
+    "storage_bucket": "cmp-kmp-login.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62871456607:android:cfc5e7ce735aa2909444ea",
+        "android_client_info": {
+          "package_name": "com.o3.cmplogin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNjDLZruoN0gLmw6uI-5vVVvc6iNisch8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
