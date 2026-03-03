@@ -7,12 +7,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.tooling.preview.Preview
+import com.o3.cmplogin.core.utils.sdp
+import com.o3.cmplogin.core.utils.ssp
+
 @Composable
 fun RoundedButton(
     text: String,
@@ -27,10 +28,10 @@ fun RoundedButton(
             containerColor = backgroundColor,
             contentColor = contentColor
         ),
-        shape = RoundedCornerShape(24.dp),
+        shape = RoundedCornerShape(24.sdp),
         modifier = modifier
     ) {
-        Text(text = text, fontSize = 16.sp)
+        Text(text = text, fontSize = 16.ssp)
     }
 }
 
@@ -43,7 +44,7 @@ fun RoundedButtonPreview() {
             onClick = {},
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(16.sdp),
             backgroundColor = Color.Black,
             contentColor = Color.White
         )

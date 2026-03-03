@@ -2,22 +2,31 @@ package com.o3.cmplogin.core.presentation.screens.signup
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import cmplogin.composeapp.generated.resources.Res
 import cmplogin.composeapp.generated.resources.splash_bg
 import com.o3.cmplogin.core.presentation.component.RoundedButton
 import com.o3.cmplogin.core.presentation.component.RoundedTextField
 import com.o3.cmplogin.core.presentation.screens.signup.model.SignUpEffect
 import com.o3.cmplogin.core.presentation.screens.signup.model.SignUpIntent
+import com.o3.cmplogin.core.utils.config.AppSpacer
+import com.o3.cmplogin.core.utils.sdp
+import com.o3.cmplogin.core.utils.ssp
 import com.o3.cmplogin.project.showToast
 import kotlinx.coroutines.flow.collectLatest
 import org.jetbrains.compose.resources.painterResource
@@ -53,13 +62,13 @@ fun SignUpScreen(
         )
 
         Column(
-            modifier = Modifier.fillMaxSize().padding(horizontal = 24.dp),
+            modifier = Modifier.fillMaxSize().padding(horizontal = 24.sdp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Sign Up", fontSize = 25.sp, fontWeight = FontWeight.Bold)
+            Text("Sign Up", fontSize = 25.ssp, fontWeight = FontWeight.Bold)
 
-            Spacer(modifier = Modifier.height(100.dp))
+            AppSpacer(100.sdp)
 
             RoundedTextField(
                 value = state.email,
@@ -67,7 +76,7 @@ fun SignUpScreen(
                 placeholder = "Enter Email"
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            AppSpacer(12.sdp)
 
             RoundedTextField(
                 value = state.password,
@@ -78,7 +87,7 @@ fun SignUpScreen(
                 onTrailingIconClick = { viewModel.onIntent(SignUpIntent.TogglePasswordVisibility) }
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            AppSpacer(12.sdp)
 
             RoundedTextField(
                 value = state.confirmPassword,
@@ -89,15 +98,15 @@ fun SignUpScreen(
                 onTrailingIconClick = { viewModel.onIntent(SignUpIntent.ToggleConfirmPasswordVisibility) }
             )
 
-            Spacer(modifier = Modifier.height(40.dp))
+            AppSpacer(40.sdp)
 
             RoundedButton(
                 text = "Sign Up",
                 onClick = { viewModel.onIntent(SignUpIntent.Submit) },
-                modifier = Modifier.fillMaxWidth().height(50.dp)
+                modifier = Modifier.fillMaxWidth().height(50.sdp)
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            AppSpacer(16.sdp)
 
             Row {
                 Text("Already have account? ")

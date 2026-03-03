@@ -1,9 +1,9 @@
 package com.o3.cmplogin.project
 
+import com.o3.cmplogin.core.data.local.entity.UserEntity
 import com.o3.cmplogin.core.data.repository.AuthRepository
 
 class FakeAuthRepository : AuthRepository {
-
     private val fakeEmail = "test@user.com"
     private val fakePassword = "123456"
     private var loggedIn = false
@@ -25,6 +25,17 @@ class FakeAuthRepository : AuthRepository {
             Result.success(Unit)
         } else {
             Result.failure(Exception("Invalid signup credentials"))
+        }
+    }
+
+    override suspend fun getLastUser(): UserEntity? {
+        return if (loggedIn) {
+            UserEntity(
+                email = fakeEmail,
+                password = fakePassword
+            )
+        } else {
+            null
         }
     }
 }

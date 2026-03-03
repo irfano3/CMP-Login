@@ -1,11 +1,8 @@
 package com.o3.cmplogin.di
 
-import com.o3.cmplogin.core.data.repository.AuthRepositoryImpl
 import com.o3.cmplogin.core.data.repository.AuthRepository
-import com.o3.cmplogin.core.domain.usecase.CheckAuthUseCase
-import com.o3.cmplogin.core.domain.usecase.LoginUseCase
-import com.o3.cmplogin.core.domain.usecase.SignUpUseCase
-import com.o3.cmplogin.core.presentation.screens.login.LoginScreen
+import com.o3.cmplogin.core.data.repository.AuthRepositoryImpl
+import com.o3.cmplogin.core.presentation.screens.dashboard.DashboardViewModel
 import com.o3.cmplogin.core.presentation.screens.login.LoginViewModel
 import com.o3.cmplogin.core.presentation.screens.signup.SignUpViewModel
 import com.o3.cmplogin.core.presentation.screens.splash.SplashViewModel
@@ -22,9 +19,17 @@ val appModule = module {
 
     single<FirebaseAuth> { Firebase.auth }
 
-    single<AuthRepository> { AuthRepositoryImpl(get()) }
+    single<AuthRepository> {
+        AuthRepositoryImpl(
+            userDao = get(),
+            firebaseAuth = get()
+        )
+    }
 
+    //ViewModels
     singleOf(::SplashViewModel)
     singleOf(::LoginViewModel)
     singleOf(::SignUpViewModel)
+    factoryOf(::DashboardViewModel)
+
 }

@@ -9,11 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.unit.dp
 import cmplogin.composeapp.generated.resources.Res
 import cmplogin.composeapp.generated.resources.ic_visibility
 import cmplogin.composeapp.generated.resources.ic_visibility_off
-import com.o3.cmplogin.core.presentation.screens.signup.model.SignUpState
+import com.o3.cmplogin.core.utils.sdp
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -65,7 +64,7 @@ fun RoundedTextField(
             unfocusedTextColor = Color.Black
         ),
 
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(16.sdp),
         modifier = modifier.fillMaxWidth()
     )
 }

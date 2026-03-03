@@ -3,7 +3,7 @@ package com.o3.cmplogin.core.presentation.screens.signup
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.o3.cmplogin.core.domain.usecase.SignUpUseCase
+import com.o3.cmplogin.core.data.repository.AuthRepository
 import com.o3.cmplogin.core.presentation.screens.signup.model.SignUpEffect
 import com.o3.cmplogin.core.presentation.screens.signup.model.SignUpIntent
 import com.o3.cmplogin.core.presentation.screens.signup.model.SignUpState
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 
 class SignUpViewModel(
-    private val signUpUseCase: SignUpUseCase
+    private val authRepository: AuthRepository
 ) {
 
     var state by mutableStateOf(SignUpState())
@@ -56,7 +56,7 @@ class SignUpViewModel(
                         return@launch
                     }
 
-                    val result = signUpUseCase(state.email, state.password)
+                    val result = authRepository.signup(state.email, state.password)
 
                     result
                         .onSuccess {

@@ -12,7 +12,6 @@ plugins {
     alias(libs.plugins.room)
     id("com.google.gms.google-services")
 }
-
 kotlin {
     androidTarget {
         compilerOptions {
@@ -39,9 +38,10 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
 
-
-
+            // Android specific Room runtime
+            implementation(libs.room.runtime.android)
         }
+
         commonMain.dependencies {
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
@@ -53,6 +53,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
             implementation(libs.jetbrains.compose.navigation)
+
+            implementation(libs.androidx.lifecycle.viewmodel)
 
             //firebase
             implementation(libs.firebase.auth)
@@ -115,11 +117,22 @@ room {
 }
 
 dependencies {
-    implementation(libs.firebase.auth.ktx)
-    debugImplementation(libs.compose.uiTooling)
-    ksp(libs.room.compiler)
-}
 
+    // Android
+    add("kspAndroid", libs.room.compiler)
+
+    // iOS
+    add("kspIosArm64", libs.room.compiler)
+    add("kspIosSimulatorArm64", libs.room.compiler)
+
+    // Desktop JVM
+    add("kspJvm", libs.room.compiler)
+
+    // Firebase Android KTX
+    implementation(libs.firebase.auth.ktx)
+
+    debugImplementation(libs.compose.uiTooling)
+}
 compose.desktop {
     application {
         mainClass = "com.o3.cmplogin.MainKt"

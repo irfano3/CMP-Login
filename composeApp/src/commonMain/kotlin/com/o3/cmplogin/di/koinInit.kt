@@ -9,7 +9,6 @@ fun koinInit(config: KoinAppDeclaration? = null) {
 
         modules(
             appModule,
-            useCaseModule,
             platformModule
         )
     }

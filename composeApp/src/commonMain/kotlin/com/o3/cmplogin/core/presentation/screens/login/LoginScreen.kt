@@ -6,10 +6,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,14 +17,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import cmplogin.composeapp.generated.resources.Res
 import cmplogin.composeapp.generated.resources.splash_bg
 import com.o3.cmplogin.core.presentation.component.RoundedButton
 import com.o3.cmplogin.core.presentation.component.RoundedTextField
 import com.o3.cmplogin.core.presentation.screens.login.model.LoginEffect
 import com.o3.cmplogin.core.presentation.screens.login.model.LoginIntent
+import com.o3.cmplogin.core.utils.config.AppSpacer
+import com.o3.cmplogin.core.utils.sdp
+import com.o3.cmplogin.core.utils.ssp
 import com.o3.cmplogin.project.showToast
 import kotlinx.coroutines.flow.collectLatest
 import org.jetbrains.compose.resources.painterResource
@@ -47,6 +46,7 @@ fun LoginScreen(
                 LoginEffect.NavigateToDashboard -> {
                     onNavigateToDashboard()
                 }
+
                 is LoginEffect.ShowError -> {
                     showToast(effect.message)
                 }
@@ -66,19 +66,19 @@ fun LoginScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(24.dp),
+                .padding(24.sdp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Text(
                 text = "Login",
-                fontSize = 28.sp,
+                fontSize = 28.ssp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
 
-            Spacer(modifier = Modifier.height(24.dp))
+            AppSpacer(24.sdp)
 
             RoundedTextField(
                 value = state.email,
@@ -86,7 +86,7 @@ fun LoginScreen(
                 placeholder = "Enter Email"
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            AppSpacer(12.sdp)
 
             RoundedTextField(
                 value = state.password,
@@ -99,7 +99,7 @@ fun LoginScreen(
                 }
             )
 
-            Spacer(modifier = Modifier.height(24.dp))
+            AppSpacer(24.sdp)
 
             RoundedButton(
                 text = "Login",
@@ -107,7 +107,7 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            AppSpacer(16.sdp)
 
             Row {
                 Text(text = "I don't have account? ")

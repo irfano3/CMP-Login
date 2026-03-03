@@ -3,7 +3,7 @@ package com.o3.cmplogin.core.presentation.screens.login
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.o3.cmplogin.core.domain.usecase.LoginUseCase
+import com.o3.cmplogin.core.data.repository.AuthRepository
 import com.o3.cmplogin.core.presentation.screens.login.model.LoginEffect
 import com.o3.cmplogin.core.presentation.screens.login.model.LoginIntent
 import com.o3.cmplogin.core.presentation.screens.login.model.LoginState
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-    private val loginUseCase: LoginUseCase
+    private val authRepository: AuthRepository
 ) {
 
     var state by mutableStateOf(LoginState())
@@ -44,7 +44,7 @@ class LoginViewModel(
                         return@launch
                     }
 
-                    val result = loginUseCase(state.email, state.password)
+                    val result = authRepository.login(state.email, state.password)
 
                     result
                         .onSuccess {

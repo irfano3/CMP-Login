@@ -1,43 +1,40 @@
 package com.o3.cmplogin.core.presentation.screens.dashboard
 
-import cmplogin.composeapp.generated.resources.splash_bg
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import org.jetbrains.compose.resources.painterResource
-import cmplogin.composeapp.generated.resources.Res
+import com.o3.cmplogin.core.utils.config.AppSpacer
+import com.o3.cmplogin.core.utils.sdp
+import com.o3.cmplogin.core.utils.ssp
+import org.koin.compose.koinInject
 
 @Composable
 fun DashboardScreen() {
-    Box(
+
+    val viewModel: DashboardViewModel = koinInject()
+
+    Column(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(16.dp)
-        ) {
 
-            Text(
-                text = "Welcome to Dashboard",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
-            )
+        Text(
+            text = viewModel.email,
+            fontSize = 22.ssp,
+            fontWeight = FontWeight.Bold
+        )
 
-            Spacer(modifier = Modifier.height(8.dp))
+        AppSpacer(12.sdp)
 
-            Text(
-                text = "You are successfully logged in!",
-                fontSize = 16.sp
-            )
-        }
+        Text(
+            text = viewModel.password,
+            fontSize = 18.ssp
+        )
     }
 }
